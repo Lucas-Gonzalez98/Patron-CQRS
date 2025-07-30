@@ -1037,7 +1037,7 @@ dependencies {
 
 Ejecutar los siguientes scripts SQL en orden:
 
-- `script_datos1.sql`
+- `script_datos_1.sql`
 
 
 
@@ -1048,11 +1048,11 @@ Esta implementación de** CQRS con Spring Boot** demuestra cómo separar clarame
 
 **🔑 Puntos Clave:**
 
-    - **Separación clara** entre Commands y Queries
-    - **Reutilización** de entidades y repositorios
-    - **Optimización específica** para cada tipo de operación
-    - **Escalabilidad** preparada para crecimiento futuro
-    - **Mantenibilidad** mejorada através de la organización modular
+- **Separación clara** entre Commands y Queries
+- **Reutilización** de entidades y repositorios
+- **Optimización específica** para cada tipo de operación
+- **Escalabilidad** preparada para crecimiento futuro
+- **Mantenibilidad** mejorada através de la organización modular
 
 El patrón CQRS aporta **claridad arquitectónica** y prepara la aplicación para evoluciones futuras como Event Sourcing, diferentes bases de datos para lectura/escritura, o microservicios especializados.
 
@@ -1066,38 +1066,38 @@ Esta separación permite manejar de forma organizada y mantenible tanto las oper
 
 ### 🚀 Principales funcionalidades
 
-    - ✅ **Servicios separados para Commands y Queries**
+- ✅ **Servicios separados para Commands y Queries**
 
-        Cada entidad (Producto y Categoría) tiene dos servicios: uno para las consultas (`QueryService`) y otro para las modificaciones (`CommandService`). Esto permite respetar la separación CQRS incluso desde el frontend:
+Cada entidad (Producto y Categoría) tiene dos servicios: uno para las consultas (`QueryService`) y otro para las modificaciones (`CommandService`). Esto permite respetar la separación CQRS incluso desde el frontend:
 
-        ```ts
-            // Ejemplo - productoQueryService.ts
-            export const obtenerProductos = () =>
-            axios.get<ProductoDTO[]>('/api/productos/queries');
+```ts
+    // Ejemplo - productoQueryService.ts
+    export const obtenerProductos = () =>
+    axios.get<ProductoDTO[]>('/api/productos/queries');
 
-            // Ejemplo - productoCommandService.ts
-            export const crearProducto = (producto: CrearProductoCommand) =>
-            axios.post('/api/productos/commands', producto);
-        ```
-    
-    - 🧩 **Componentes**
+    // Ejemplo - productoCommandService.ts
+    export const crearProducto = (producto: CrearProductoCommand) =>
+    axios.post('/api/productos/commands', producto);
+```
 
-        Cada entidad tiene componentes separados para formularios (`Form.tsx`) y listados (`List.tsx`). Los formularios permiten tanto creación como edición, reutilizando el mismo código.
-    
-    🎨 **Estilos modernos y consistentes**
+- 🧩 **Componentes**
 
-        - Se utiliza `styled-components` para estilos personalizados con tipado en TypeScript.
+Cada entidad tiene componentes separados para formularios (`Form.tsx`) y listados (`List.tsx`). Los formularios permiten tanto creación como edición, reutilizando el mismo código.
 
-        - Se integra `React-Bootstrap` para componentes de UI rápidos y responsivos.
+🎨 **Estilos modernos y consistentes**
 
-    - 🧠** Definición clara de tipos**
+- Se utiliza `styled-components` para estilos personalizados con tipado en TypeScript.
 
-        Todo se tipa estrictamente usando interfaces:
-        Por ejemplo, `ProductoDTO.ts` para lectura y `CrearProductoCommand.ts` para escritura. Esto garantiza seguridad de tipo y coherencia con el backend.
+- Se integra `React-Bootstrap` para componentes de UI rápidos y responsivos.
 
-    - **Modales para edición inline**
+- 🧠** Definición clara de tipos**
 
-        Las acciones de crear, editar o dar de baja productos y categorías se realizan mediante modales, sin necesidad de navegar a otras páginas. Esto mejora la UX manteniendo todo en el mismo contexto visual.
+Todo se tipa estrictamente usando interfaces:
+Por ejemplo, `ProductoDTO.ts` para lectura y `CrearProductoCommand.ts` para escritura. Esto garantiza seguridad de tipo y coherencia con el backend.
+
+- **Modales para edición inline**
+
+Las acciones de crear, editar o dar de baja productos y categorías se realizan mediante modales, sin necesidad de navegar a otras páginas. Esto mejora la UX manteniendo todo en el mismo contexto visual.
 
 ### ⚙️ Instalación y ejecución
 
