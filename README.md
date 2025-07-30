@@ -1,20 +1,66 @@
 # 🧠 Patrón CQRS - Command Query Responsibility Segregation
 
-## 📚 Índice
+# 📚 Índice
 
-1. [¿Qué es CQRS?](#qué-es-cqrs)
-2. [¿Por qué usar CQRS?](#por-qué-usar-cqrs)
-3. [Ventajas](#ventajas)
-4. [Desventajas](#desventajas)
-5. [Mi implementación: CRUD con CQRS](#mi-implementación-crud-con-cqrs)
-6. [Estructura del Proyecto](#estructura-del-proyecto)
-7. [Backend - Spring Boot con CQRS](#backend-spring-boot-con-cqrs)
-8. [Frontend (React + TypeScript)](#frontend-react--typescript)
-9. [Conclusión](#conclusión)
+- [🧠 Patrón CQRS - Command Query Responsibility Segregation](#-patrón-cqrs---command-query-responsibility-segregation)
+- [📚 Índice](#-índice)
+- [¿Qué es CQRS?](#qué-es-cqrs)
+- [¿Por qué usar CQRS?](#por-qué-usar-cqrs)
+- [Ventajas](#ventajas)
+- [Desventajas](#desventajas)
+- [Mi implementación: CRUD con CQRS](#mi-implementación-crud-con-cqrs)
+- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
+- [⚙️ Backend - Spring Boot con CQRS](#️-backend---spring-boot-con-cqrs)
+- [📝 1. Command: Lógica de Escritura](#-1-command-lógica-de-escritura)
+  - [🧩 Estructura:](#-estructura)
+  - [**`controller/`**](#controller)
+  - [**`service/`** e **`impl/`**](#service-e-impl)
+  - [**`dto/`**](#dto)
+  - [**`mapper/`**](#mapper)
+  - [✅ Responsabilidades:](#-responsabilidades)
+- [📖 2. Query: Lógica de Lectura](#-2-query-lógica-de-lectura)
+  - [🧩 Estructura:](#-estructura-1)
+  - [**`controller/`**](#controller-1)
+  - [**`service/`** e **`impl/`**](#service-e-impl-1)
+  - [**`dto/`**](#dto-1)
+  - [**`mapper/`**](#mapper-1)
+  - [✅ Responsabilidades:](#-responsabilidades-1)
+- [🏛️ 3. Domain/Entity: Modelo de Dominio](#️-3-domainentity-modelo-de-dominio)
+  - [**Producto.java**](#productojava)
+  - [**Categoria.java**](#categoriajava)
+- [💾 4. Repository: Acceso a Datos](#-4-repository-acceso-a-datos)
+  - [**ProductoRepository.java**](#productorepository.java)
+  - [**CategoriaRepository.java**](#categoriarepository.java)
+- [🛠️ Tecnologías y Buenas Prácticas Utilizadas](#️-tecnologías-y-buenas-prácticas-utilizadas)
+  - [**✅ Stack Tecnológico**](#-stack-tecnológico)
+  - [**✅ Patrones y Prácticas**](#-patrones-y-prácticas)
+  - [**❌ Decisiones de Diseño**](#-decisiones-de-diseño)
+- [🔧 Configuración](#-configuración)
+  - [**application.properties**](#applicationproperties)
+  - [**Dependencias principales (pom.xml)**](#dependencias-principales-pomxml)
+  - [4. Build y ejecución](#4-build-y-ejecución)
+  - [5. Carga de datos](#5-carga-de-datos)
+- [🎯 Conclusión BackEnd](#-conclusión-backend)
+  - [**🔑 Puntos Clave:**](#-puntos-clave)
+- [💻 Frontend (React + TypeScript)](#-frontend-react--typescript)
+- [1. 🚀 Principales funcionalidades](#-principales-funcionalidades)
+  - [✅ **Servicios separados para Commands y Queries**](#-servicios-separados-para-commands-y-queries)
+  - [🧩 **Componentes**](#-componentes)
+  - [🎨 **Estilos modernos y consistentes**](#-estilos-modernos-y-consistentes)
+  - [🧠 **Definición clara de tipos**](#-definición-clara-de-tipos)
+  - [**Modales para edición inline**](#modales-para-edición-inline)
+- [2. ⚙️ Instalación y ejecución](#️-instalación-y-ejecución)
+  - [Prerrequisitos](#prerrequisitos)
+  - [Clonar el repositorio](#clonar-el-repositorio)
+  - [Correr el proyecto](#correr-el-proyecto)
+  - [Otros scripts útiles](#otros-scripts-útiles)
+- [3. 📌 Objetivo del frontend](#-objetivo-del-frontend)
+- [Conclusión](#conclusión)
+
 
 ---
 
-## ¿Qué es CQRS?
+### ¿Qué es CQRS?
 
 **CQRS** significa _Command Query Responsibility Segregation_ (Separación de Responsabilidades de Comando y Consulta).  
 Es un patrón arquitectónico que propone dividir las operaciones de **lectura** y **escritura** de una aplicación en modelos distintos.
@@ -27,9 +73,8 @@ Con CQRS, separamos:
 
 Esta separación permite escalar cada lado de manera independiente, optimizar las consultas o comandos según necesidades específicas, y tener un sistema más mantenible y robusto en contextos complejos.
 
----
 
-## ¿Por qué usar CQRS?
+### ¿Por qué usar CQRS?
 
 El patrón CQRS es útil en escenarios donde:
 
@@ -40,9 +85,8 @@ El patrón CQRS es útil en escenarios donde:
 
 > 🔁 En sistemas simples no siempre vale la pena aplicar CQRS, pero es una gran opción para preparar la arquitectura hacia una evolución a largo plazo.
 
----
 
-## Ventajas
+### Ventajas
 
 ✅ **Separación de responsabilidades clara**  
 ✅ **Escalabilidad independiente para consultas y comandos**  
@@ -50,9 +94,8 @@ El patrón CQRS es útil en escenarios donde:
 ✅ **Facilita pruebas unitarias y mantenimiento**  
 ✅ **Permite adaptar distintas tecnologías para Queries y Commands si es necesario**
 
----
 
-## Desventajas
+### Desventajas
 
 ⚠️ **Mayor complejidad en la estructura del proyecto**  
 ⚠️ **Más capas, más clases y más código que mantener**  
@@ -1084,11 +1127,11 @@ Cada entidad (Producto y Categoría) tiene dos servicios: uno para las consultas
 
 Cada entidad tiene componentes separados para formularios (`Form.tsx`) y listados (`List.tsx`). Los formularios permiten tanto creación como edición, reutilizando el mismo código.
 
-🎨 **Estilos modernos y consistentes**
+- 🎨 **Estilos modernos y consistentes**
 
-- Se utiliza `styled-components` para estilos personalizados con tipado en TypeScript.
+    - Se utiliza `styled-components` para estilos personalizados con tipado en TypeScript.
 
-- Se integra `React-Bootstrap` para componentes de UI rápidos y responsivos.
+    - Se integra `React-Bootstrap` para componentes de UI rápidos y responsivos.
 
 - 🧠** Definición clara de tipos**
 
