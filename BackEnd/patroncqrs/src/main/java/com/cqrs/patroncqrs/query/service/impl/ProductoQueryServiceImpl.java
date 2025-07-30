@@ -70,6 +70,4 @@ public class ProductoQueryServiceImpl implements ProductoQueryService {
                 .map(mapper::toDTOWithFormattedPrice)
                 .toList();
     }
-
-
 }
