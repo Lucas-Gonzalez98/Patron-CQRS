@@ -2,61 +2,121 @@
 
 # 📚 Índice
 
+```
+📚 Índice
+├── 1. 📚 Índice
+├── 2. 🧠 Patrón CQRS - Command Query Responsibility Segregation
+│   ├── 2.1. ¿Qué es CQRS?
+│   ├── 2.2. ¿Por qué usar CQRS?
+│   ├── 2.3. Ventajas
+│   └── 2.4. Desventajas
+├── 3. Mi implementación: CRUD con CQRS
+├── 4. 📁 Estructura del Proyecto
+├── 5. ⚙️ Backend - Spring Boot con CQRS
+│   ├── 5.1. 📝 Command: Lógica de Escritura
+│   │   ├── 🧩 Estructura:
+│   │   ├── controller/
+│   │   ├── service/ e impl/
+│   │   ├── dto/
+│   │   ├── mapper/
+│   │   └── ✅ Responsabilidades:
+│   ├── 5.2. 📖 Query: Lógica de Lectura
+│   │   ├── 🧩 Estructura:
+│   │   ├── controller/
+│   │   ├── service/ e impl/
+│   │   ├── dto/
+│   │   ├── mapper/
+│   │   └── ✅ Responsabilidades:
+│   ├── 5.3. 🏛️ Domain/Entity: Modelo de Dominio
+│   │   ├── Producto.java
+│   │   └── Categoria.java
+│   ├── 5.4. 💾 Repository: Acceso a Datos
+│   │   ├── ProductoRepository.java
+│   │   └── CategoriaRepository.java
+│   ├── 5.5. 🛠️ Tecnologías y Buenas Prácticas Utilizadas
+│   │   ├── ✅ Stack Tecnológico
+│   │   ├── ✅ Patrones y Prácticas
+│   │   └── ❌ Decisiones de Diseño
+│   ├── 5.6. 🔧 Configuración
+│   │   ├── application.properties
+│   │   ├── Dependencias principales (pom.xml)
+│   │   ├── Build y ejecución
+│   │   └── Carga de datos
+│   └── 5.7. 🎯 Conclusión BackEnd
+│       └── 🔑 Puntos Clave:
+├── 6. 💻 Frontend (React + TypeScript)
+│   ├── 6.1. 🚀 Principales funcionalidades
+│   │   ├── ✅ Servicios separados para Commands y Queries
+│   │   ├── 🧩 Componentes
+│   │   ├── 🎨 Estilos modernos y consistentes
+│   │   ├── 🧠 Definición clara de tipos
+│   │   └── Modales para edición inline
+│   ├── 6.2. ⚙️ Instalación y ejecución
+│   │   ├── Prerrequisitos
+│   │   ├── Clonar el repositorio
+│   │   ├── Correr el proyecto
+│   │   └── Otros scripts útiles
+│   └── 6.3. 📌 Objetivo del frontend
+└── 7. Conclusión
+```
+
+---
+
+## Enlaces de navegación rápida
+
 - [🧠 Patrón CQRS - Command Query Responsibility Segregation](#-patrón-cqrs---command-query-responsibility-segregation)
-- [📚 Índice](#-índice)
-- [¿Qué es CQRS?](#qué-es-cqrs)
-- [¿Por qué usar CQRS?](#por-qué-usar-cqrs)
-- [Ventajas](#ventajas)
-- [Desventajas](#desventajas)
+  - [¿Qué es CQRS?](#qué-es-cqrs)
+  - [¿Por qué usar CQRS?](#por-qué-usar-cqrs)
+  - [Ventajas](#ventajas)
+  - [Desventajas](#desventajas)
 - [Mi implementación: CRUD con CQRS](#mi-implementación-crud-con-cqrs)
 - [📁 Estructura del Proyecto](#-estructura-del-proyecto)
 - [⚙️ Backend - Spring Boot con CQRS](#️-backend---spring-boot-con-cqrs)
-- [📝 1. Command: Lógica de Escritura](#-1-command-lógica-de-escritura)
-  - [🧩 Estructura:](#-estructura)
-  - [**`controller/`**](#controller)
-  - [**`service/`** e **`impl/`**](#service-e-impl)
-  - [**`dto/`**](#dto)
-  - [**`mapper/`**](#mapper)
-  - [✅ Responsabilidades:](#-responsabilidades)
-- [📖 2. Query: Lógica de Lectura](#-2-query-lógica-de-lectura)
-  - [🧩 Estructura:](#-estructura-1)
-  - [**`controller/`**](#controller-1)
-  - [**`service/`** e **`impl/`**](#service-e-impl-1)
-  - [**`dto/`**](#dto-1)
-  - [**`mapper/`**](#mapper-1)
-  - [✅ Responsabilidades:](#-responsabilidades-1)
-- [🏛️ 3. Domain/Entity: Modelo de Dominio](#️-3-domainentity-modelo-de-dominio)
-  - [**Producto.java**](#productojava)
-  - [**Categoria.java**](#categoriajava)
-- [💾 4. Repository: Acceso a Datos](#-4-repository-acceso-a-datos)
-  - [**ProductoRepository.java**](#productorepository.java)
-  - [**CategoriaRepository.java**](#categoriarepository.java)
-- [🛠️ Tecnologías y Buenas Prácticas Utilizadas](#️-tecnologías-y-buenas-prácticas-utilizadas)
-  - [**✅ Stack Tecnológico**](#-stack-tecnológico)
-  - [**✅ Patrones y Prácticas**](#-patrones-y-prácticas)
-  - [**❌ Decisiones de Diseño**](#-decisiones-de-diseño)
-- [🔧 Configuración](#-configuración)
-  - [**application.properties**](#applicationproperties)
-  - [**Dependencias principales (pom.xml)**](#dependencias-principales-pomxml)
-  - [4. Build y ejecución](#4-build-y-ejecución)
-  - [5. Carga de datos](#5-carga-de-datos)
-- [🎯 Conclusión BackEnd](#-conclusión-backend)
-  - [**🔑 Puntos Clave:**](#-puntos-clave)
+  - [📝 Command: Lógica de Escritura](#-1-command-lógica-de-escritura)
+    - [🧩 Estructura:](#-estructura)
+    - [controller/](#controller)
+    - [service/ e impl/](#service-e-impl)
+    - [dto/](#dto)
+    - [mapper/](#mapper)
+    - [✅ Responsabilidades:](#-responsabilidades)
+  - [📖 Query: Lógica de Lectura](#-2-query-lógica-de-lectura)
+    - [🧩 Estructura:](#-estructura-1)
+    - [controller/](#controller-1)
+    - [service/ e impl/](#service-e-impl-1)
+    - [dto/](#dto-1)
+    - [mapper/](#mapper-1)
+    - [✅ Responsabilidades:](#-responsabilidades-1)
+  - [🏛️ Domain/Entity: Modelo de Dominio](#️-3-domainentity-modelo-de-dominio)
+    - [Producto.java](#productojava)
+    - [Categoria.java](#categoriajava)
+  - [💾 Repository: Acceso a Datos](#-4-repository-acceso-a-datos)
+    - [ProductoRepository.java](#productorepository.java)
+    - [CategoriaRepository.java](#categoriarepository.java)
+  - [🛠️ Tecnologías y Buenas Prácticas Utilizadas](#️-tecnologías-y-buenas-prácticas-utilizadas)
+    - [✅ Stack Tecnológico](#-stack-tecnológico)
+    - [✅ Patrones y Prácticas](#-patrones-y-prácticas)
+    - [❌ Decisiones de Diseño](#-decisiones-de-diseño)
+  - [🔧 Configuración](#-configuración)
+    - [application.properties](#applicationproperties)
+    - [Dependencias principales (pom.xml)](#dependencias-principales-pomxml)
+    - [Build y ejecución](#4-build-y-ejecución)
+    - [Carga de datos](#5-carga-de-datos)
+  - [🎯 Conclusión BackEnd](#-conclusión-backend)
+    - [🔑 Puntos Clave:](#-puntos-clave)
 - [💻 Frontend (React + TypeScript)](#-frontend-react--typescript)
-- [1. 🚀 Principales funcionalidades](#-principales-funcionalidades)
-  - [✅ **Servicios separados para Commands y Queries**](#-servicios-separados-para-commands-y-queries)
-  - [🧩 **Componentes**](#-componentes)
-  - [🎨 **Estilos modernos y consistentes**](#-estilos-modernos-y-consistentes)
-  - [🧠 **Definición clara de tipos**](#-definición-clara-de-tipos)
-  - [**Modales para edición inline**](#modales-para-edición-inline)
-- [2. ⚙️ Instalación y ejecución](#️-instalación-y-ejecución)
-  - [Prerrequisitos](#prerrequisitos)
-  - [Clonar el repositorio](#clonar-el-repositorio)
-  - [Correr el proyecto](#correr-el-proyecto)
-  - [Otros scripts útiles](#otros-scripts-útiles)
-- [3. 📌 Objetivo del frontend](#-objetivo-del-frontend)
+  - [🚀 Principales funcionalidades](#-principales-funcionalidades)
+    - [✅ Servicios separados para Commands y Queries](#-servicios-separados-para-commands-y-queries)
+    - [🧩 Componentes](#-componentes)
+    - [🎨 Estilos modernos y consistentes](#-estilos-modernos-y-consistentes)
+    - [🧠 Definición clara de tipos](#-definición-clara-de-tipos)
+    - [Modales para edición inline](#modales-para-edición-inline)
+  - [⚙️ Instalación y ejecución](#️-instalación-y-ejecución)
+    - [Prerrequisitos](#prerrequisitos)
+    - [Clonar el repositorio](#clonar-el-repositorio)
+    - [Correr el proyecto](#correr-el-proyecto)
+    - [Otros scripts útiles](#otros-scripts-útiles)
+  - [📌 Objetivo del frontend](#-objetivo-del-frontend)
 - [Conclusión](#conclusión)
-
 
 ---
 
